@@ -5,7 +5,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="w-full bg-background px-4 py-16 sm:px-6 lg:px-8 border-t border-border">
+        <footer className="w-full bg-background px-4 pt-16 sm:px-6 lg:px-8 border-t border-border">
             <div className="mx-auto max-w-5xl">
                 <div className="space-y-16">
                     {/* Top Section - Navigation & CTA */}
@@ -14,7 +14,9 @@ export default function Footer() {
                         <div className="space-y-4">
                             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Navigate</p>
                             <nav className="space-y-2">
-                                <Link href="#work" className="block text-sm text-foreground hover:text-primary transition-colors">
+                                <Link href="#demo" className="block text-sm text-foreground hover:text-primary transition-colors"
+
+                                >
                                     Our Work
                                 </Link>
                                 <Link href="#services" className="block text-sm text-foreground hover:text-primary transition-colors">

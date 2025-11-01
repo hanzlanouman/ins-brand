@@ -41,18 +41,21 @@ export default function ContactForm() {
             className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
         >
-            <div className="mx-auto max-w-3xl">
+            <div className="mx-auto max-w-5xl">
                 <div className="mb-12">
-                    <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                        Book Your Free Strategy Call
+                    <p className="text-xs md:text-center font-semibold text-muted-foreground uppercase tracking-widest mb-4">
+                        LET&apos;S GET STARTED
+                    </p>
+                    <h2 className="text-5xl md:text-center sm:text-7xl font-bold tracking-tight text-foreground">
+                        Book Your <span className="text-primary">Free Strategy Call</span>
                     </h2>
-                    <p className="mt-4 text-lg text-muted-foreground">
+                    <p className="mt-4 text-lg text-muted-foreground md:text-center">
                         No sales pressure. No hidden fees. Just a real 15-minute conversation about how we can help your dealership
-                        grow. You&apos;ll leave with at least one actionable tactic—guaranteed.
+                        grow.
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4 max-w-3xl mx-auto">
                     <div className="grid gap-4 md:grid-cols-2">
                         <Input
                             type="text"
@@ -96,7 +99,7 @@ export default function ContactForm() {
 
                     <Button
                         type="submit"
-                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 cursor-pointer"
                     >
                         Book My Free 15-Min Call
                     </Button>

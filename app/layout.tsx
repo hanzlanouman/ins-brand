@@ -18,9 +18,8 @@ import { ThemeProvider } from "next-themes"
 import Navbar from "@/components/navbar/navbar"
 import Footer from "@/components/footer"
 export const metadata: Metadata = {
-  title: "Staxly Solutions - Modern Business Solutions",
-  description: "Staxly Solutions provides innovative business solutions for modern enterprises.",
-  generator: "v0.app",
+  title: "Staxly Solutions - Smart Websites and Solutions for dealerships.",
+  description: "Staxly Solutions provides smart websites and digital solutions tailored for dealerships. Boost your online presence and drive sales with our expert services.",
 }
 
 export default function RootLayout({
@@ -31,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Navbar />
           {children}
           <Footer />

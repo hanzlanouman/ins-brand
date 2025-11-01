@@ -63,10 +63,12 @@ export default function FAQ() {
             className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
         >
-            <div className="mx-auto max-w-3xl">
-                <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                    Questions? We have answers.
+            <div className="mx-auto max-w-5xl">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">COMMON QUESTIONS</p>
+                <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground">
+                    Your <span className="text-primary">Questions</span> Answered
                 </h2>
+                <p className="mt-4 text-lg text-muted-foreground">Everything you need to know about how we work.</p>
 
                 <div className="mt-12 space-y-4">
                     {FAQS.map((faq, idx) => {

@@ -1,55 +1,114 @@
 "use client"
 
-import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
+import ThemeSwitcher from "./theme-switcher"
+import { PrimaryCTA } from "../primary-cta"
+import { X } from "lucide-react"
+import Logo from "./logo"
 
-interface MobileMenuProps {
-    isOpen: boolean
-    onClose: () => void
-}
+type Props = { isOpen: boolean; onClose: () => void }
 
-export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose }: Props) {
+    const firstLinkRef = useRef<HTMLButtonElement>(null)
+
+    // body lock + Esc + initial focus when opening
     useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = "hidden"
-        } else {
-            document.body.style.overflow = "unset"
-        }
-
+        if (!isOpen) return
+        const prev = document.body.style.overflow
+        document.body.style.overflow = "hidden"
+        firstLinkRef.current?.focus()
+        const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose()
+        window.addEventListener("keydown", onKey)
         return () => {
-            document.body.style.overflow = "unset"
+            document.body.style.overflow = prev
+            window.removeEventListener("keydown", onKey)
         }
-    }, [isOpen])
+    }, [isOpen, onClose])
 
-    if (!isOpen) return null
+    const scrollTo = (id: string) => {
+        onClose()
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
 
     return (
-        <div className="fixed inset-0 top-16 z-40 md:hidden">
-            <div className="absolute inset-0 bg-background/95 backdrop-blur-sm" onClick={onClose} />
-            <div className="relative bg-background border-b border-border">
-                <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
-                    <Link
-                        href="/about"
-                        className="block text-foreground hover:text-primary transition-colors font-medium py-2"
+        <div
+            className={`fixed inset-0 z-50 md:hidden ${isOpen ? "pointer-events-auto" : "pointer-events-none"
+                }`}
+            role="dialog"
+            aria-modal="true"
+            aria-hidden={!isOpen}
+        >
+            {/* overlay with fade */}
+            <button
+                aria-label="Close menu"
+                onClick={onClose}
+                className={`absolute inset-0 bg-black/40 backdrop-blur-[2px] transition-opacity ${isOpen ? "opacity-100" : "opacity-0"
+                    }`}
+            />
+
+            {/* slide-in sheet */}
+            <div
+                className={`absolute right-0 top-0 h-full w-[88vw] max-w-[420px]
+                    bg-background border-l border-border shadow-2xl
+                    transition-transform duration-300 ease-out will-change-transform
+                    ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+            >
+                {/* header */}
+                <div className="flex items-center justify-between px-5 py-4 border-b border-border/60">
+                    <div className="flex h-6">
+                        <Logo />
+                    </div>
+                    <button
                         onClick={onClose}
+                        className="rounded-full p-2 text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary/60"
+                        aria-label="Close"
                     >
-                        About
-                    </Link>
-                    <Link
-                        href="/pricing"
-                        className="block text-foreground hover:text-primary transition-colors font-medium py-2"
-                        onClick={onClose}
-                    >
-                        Pricing
-                    </Link>
-                    <Link
-                        href="#contact"
-                        className="block w-full px-6 py-2 bg-primary text-primary-foreground rounded-full font-medium text-center hover:opacity-90 transition-opacity mt-4"
-                        onClick={onClose}
-                    >
-                        Get Started
-                    </Link>
+                        <X size={20} />
+                    </button>
                 </div>
+
+                {/* content */}
+                <nav className="flex h-[calc(100%-56px)] flex-col">
+                    {/* links + CTA */}
+                    <ul className="px-3 py-3 space-y-1">
+                        <li>
+                            <button
+                                ref={firstLinkRef}
+                                onClick={() => scrollTo("services")}
+                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
+                            >
+                                Our Services
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => scrollTo("partnership")}
+                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
+                            >
+                                Our Partnership
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => scrollTo("faq")}
+                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
+                            >
+                                FAQs
+                            </button>
+                        </li>
+
+                        {/* Primary CTA clearly visible with links */}
+                        <li className="pt-2 px-1">
+                            <PrimaryCTA id="mobile-cta" onClick={() => scrollTo("contact")} />
+                        </li>
+                    </ul>
+
+                    {/* footer pinned to bottom: theme only */}
+                    <div className="mt-auto px-5 pb-5 pt-3 border-t border-border/60 flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">Theme</span>
+                        <ThemeSwitcher />
+                    </div>
+                </nav>
             </div>
         </div>
     )

@@ -1,5 +1,4 @@
 import Hero from "@/components/hero/hero"
-import ScreenshotsCarousel from "@/components/screenshot-carousel"
 import Services from "@/components/services"
 import Process from "@/components/process"
 import FAQ from "@/components/faq"
@@ -10,9 +9,8 @@ import ContactForm from "@/components/contact-form"
 
 export default function Home() {
   return (
-    <main className="min-h-screen max-w-6xl mx-auto">
+    <main className="min-h-screen mx-auto">
       <Hero />
-      <ScreenshotsCarousel />
       <PainPoints />
       <Services />
       <Demo />
@@ -20,9 +18,6 @@ export default function Home() {
       <Partnership />
       <ContactForm />
       <FAQ />
-
-
-
     </main>
   )
 }

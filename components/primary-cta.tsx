@@ -29,7 +29,7 @@ export function PrimaryCTA({
     }
 
     const base =
-        "group relative inline-flex items-center justify-center rounded-full cursor-pointer  text-sm font-semibold" +
+        "group relative inline-flex items-center justify-center rounded-2xl cursor-pointer  text-sm font-semibold" +
         " focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 transition-all " +
         " [--shine:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent)] " +
         " [--shadow:0_10px_30px_-10px_#03ef62] " +
@@ -39,10 +39,10 @@ export function PrimaryCTA({
 
     const surface =
         // filled primary pill with subtle vertical gradient and inner highlight
-        "relative w-full rounded-full ring-1 ring-black/5 dark:ring-white/10 " +
-        " bg-primary py-4 px-6 text-white dark:bg-primary dark:text-black " +
+        "relative w-full rounded-2xl ring-1 ring-black/5 dark:ring-white/10 " +
+        " bg-primary py-3 px-6 text-white dark:bg-primary dark:text-black " +
         " [background-image:linear-gradient(to_bottom,rgba(255,255,255,.12),transparent)] " +
-        " before:absolute before:inset-0 before:rounded-full before:pointer-events-none " +
+        " before:absolute before:inset-0 before:rounded-2xl before:pointer-events-none " +
         " before:[box-shadow:var(--inner)]"
 
     const content =
@@ -56,7 +56,7 @@ export function PrimaryCTA({
     const Shine = () => (
         <span
             aria-hidden
-            className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
+            className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
         >
             <span
                 className="absolute left-[-30%] top-0 h-full w-[35%] -skew-x-12 opacity-0
@@ -83,7 +83,7 @@ export function PrimaryCTA({
     const Inner = (
         <>
             {/* ripple target */}
-            <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-full" />
+            <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xll" />
             <span className={surface}>
                 <span className={content}>
                     {children}
@@ -99,7 +99,7 @@ export function PrimaryCTA({
             {/* subtle soft outer ring */}
             <span
                 aria-hidden
-                className="absolute inset-0 rounded-full ring-4 ring-primary/10 dark:ring-primary/10"
+                className="absolute inset-0 rounded-2xl ring-4 ring-primary/10 dark:ring-primary/10"
             />
         </>
     )
@@ -132,7 +132,7 @@ export function PrimaryCTA({
                 const x = e.clientX - rect.left
                 const y = e.clientY - rect.top
                 r.className =
-                    "pointer-events-none absolute aspect-square w-0 rounded-full bg-white/25 dark:bg-black/20 " +
+                    "pointer-events-none absolute aspect-square w-0 rounded-2xl bg-white/25 dark:bg-black/20 " +
                     " motion-safe:animate-ripple"
                 r.style.left = `${x}px`
                 r.style.top = `${y}px`
