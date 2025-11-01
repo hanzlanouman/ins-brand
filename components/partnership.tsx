@@ -25,7 +25,7 @@ const TEAM = [
     {
         name: "Arfah",
         role: "Co-Founder: Marketing & Operations",
-        image: "/arfah.png",
+        image: "/arfah.jpeg",
         testimonial: {
             quote:
                 "I found the right person for the job. Intelligent, professional, and goes the extra mile. I'd recommend her without hesitation.",
@@ -73,7 +73,7 @@ export default function Partnership() {
                                         <Image
                                             src={member.image || "/placeholder.svg"}
                                             alt={member.name}
-                                            className="relative w-32 h-32 rounded-full object-cover object-top border border-primary/30 shadow-lg"
+                                            className="relative w-32 h-32 rounded-full object-cover object-center border border-primary/30 shadow-lg"
                                             width={128}
                                             height={128}
                                         />

@@ -1,14 +1,12 @@
 "use client"
 
-import { Roboto } from "next/font/google"
 import { PrimaryCTA } from "../primary-cta"
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700", "800"], variable: "--font-roboto", display: "swap" })
+
 export default function HeroContent() {
     return (
-        <div className={`relative z-10 max-w-5xl mx-auto px-4 lg:px-0 md:text-center ${roboto.className}`}>
+        <div className={`relative z-10 max-w-5xl mx-auto px-4 lg:px-0 md:text-center font-hero`}>
             <div className="md:py-16 py-8 space-y-6 md:space-y-0">
-                {/* <TrustSignal /> */}
 
                 <h1 className="text-[4rem] lg:text-7xl   font-extrabold leading-tight mt-4 mb-4">
                     <span className="text-foreground text-balance block">A Website That Finally Works</span>
@@ -24,11 +22,6 @@ export default function HeroContent() {
                         id="hero-cta"
                         onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                     />
-
-
-
-                    {/* Trust Signal */}
-                    {/* <TrustSignal /> */}
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist, Geist_Mono, Roboto } from "next/font/google"
 import "@/app/globals.css"
 
 const fontSans = Geist({
@@ -12,6 +12,12 @@ const fontSans = Geist({
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
+  display: "swap",
+})
+const fontHero = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-roboto",
   display: "swap",
 })
 import { ThemeProvider } from "next-themes"
