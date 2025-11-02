@@ -27,9 +27,9 @@ export default function Demo() {
                     </p>
                 </div>
 
-                <div className="grid gap-12 lg:grid-cols-2 items-center">
+                <div className="grid gap-12 lg:grid-cols-1 items-center max-w-3xl mx-auto">
                     {/* Website Preview */}
-                    <div className="rounded-xl overflow-hidden bg-muted border border-border shadow-lg">
+                    {/* <div className="rounded-xl overflow-hidden bg-muted border border-border shadow-lg">
                         <Image
                             src="/ex.png"
                             alt="Summit Auto CA Demo Site"
@@ -37,7 +37,7 @@ export default function Demo() {
                             width={800}
                             height={1000}
                         />
-                    </div>
+                    </div> */}
 
                     {/* Chat Interface */}
                     <div className="space-y-6">

@@ -51,8 +51,18 @@ export default function Navbar() {
                                 Book Your Free Strategy Call
                             </button> */}
                             <PrimaryCTA
-                                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                                id="hero-cta"
+                                onClick={() => {
+                                    // defer by one frame to allow Chrome focus propagation
+                                    requestAnimationFrame(() => {
+                                        document.getElementById("contact")?.scrollIntoView({
+                                            behavior: "smooth",
+                                            block: "start",
+                                        })
+                                    })
+                                }}
                             />
+
                         </div>
 
                         {/* Mobile Menu Button */}

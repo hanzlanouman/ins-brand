@@ -20,7 +20,15 @@ export default function HeroContent() {
                 <div className="flex md:flex-col md:items-center gap-2 pt-4">
                     <PrimaryCTA
                         id="hero-cta"
-                        onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                        onClick={() => {
+                            // defer by one frame to allow Chrome focus propagation
+                            requestAnimationFrame(() => {
+                                document.getElementById("contact")?.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                })
+                            })
+                        }}
                     />
                 </div>
             </div>

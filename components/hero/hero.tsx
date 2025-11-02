@@ -4,7 +4,6 @@ export default function Hero() {
     return (
         <section className="relative flex items-center justify-center pt-20 md:pt-24 overflow-hidden">
             <HeroContent />
-            {/* <GridBackground /> */}
         </section>
     )
 }
