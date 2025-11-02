@@ -40,15 +40,13 @@ export default function Footer() {
                         <div className="space-y-4 md:text-right">
                             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Connect</p>
                             <nav className="space-y-2">
-                                <a href="#" className="block text-sm text-foreground hover:text-primary transition-colors">
-                                    Instagram
-                                </a>
-                                <a href="#" className="block text-sm text-foreground hover:text-primary transition-colors">
-                                    Twitter
-                                </a>
-                                <a href="#" className="block text-sm text-foreground hover:text-primary transition-colors">
+                                <Link href="mailto:info@staxly.com" className="block text-sm text-foreground hover:text-primary transition-colors">
+                                    Email
+                                </Link>
+
+                                <Link href="https://www.linkedin.com/company/staxlysolutions/" target="_blank" rel="noopener noreferrer" className="block text-sm text-foreground hover:text-primary transition-colors">
                                     LinkedIn
-                                </a>
+                                </Link>
                             </nav>
                         </div>
                     </div>

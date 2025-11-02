@@ -2,7 +2,7 @@
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import Link from "next/link"
-import { Linkedin, Twitter, Mail, X } from "lucide-react"
+import { Linkedin, Mail, Globe } from "lucide-react"
 import Image from "next/image"
 
 const TEAM = [
@@ -14,28 +14,28 @@ const TEAM = [
             quote:
                 "Having been in the industry for 20 years, Hanzla is one of the best full-stack developers I've ever worked with. An unstoppable powerhouse.",
             author: "Amir Deilami",
-            authorImage: "/hanzla.jpg",
+            authorImage: "/amir.webp",
         },
         socials: {
-            linkedin: "https://linkedin.com",
-            twitter: "https://twitter.com",
-            email: "mailto:hanzla@staxly.com",
+            linkedin: "https://www.linkedin.com/in/hanzlanouman/",
+            website: "https://hanzla.tech",
+            email: "mailto:hanzlanouman@gmail.com",
         },
     },
     {
         name: "Arfah",
-        role: "Co-Founder: Marketing & Operations",
+        role: "Marketing Lead & Client Success",
         image: "/arfah.jpeg",
         testimonial: {
             quote:
                 "I found the right person for the job. Intelligent, professional, and goes the extra mile. I'd recommend her without hesitation.",
             author: "Raman",
-            authorImage: "/fun2.jpg",
+            authorImage: "/aaras.jpg",
         },
         socials: {
-            linkedin: "https://linkedin.com",
-            twitter: "https://twitter.com",
-            email: "mailto:arfah@staxly.com",
+            linkedin: "https://www.linkedin.com/in/web-and-app-developer-expert/",
+            website: "https://arfah.tech",
+            email: "mailto:arfahali994@gmail.com",
         },
     },
 ]
@@ -93,13 +93,13 @@ export default function Partnership() {
                                                 <Linkedin size={16} />
                                             </Link>
                                             <Link
-                                                href={member.socials.twitter}
+                                                href={member.socials.website}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-                                                aria-label="Twitter"
+                                                aria-label="Website"
                                             >
-                                                <X size={16} />
+                                                <Globe size={16} />
                                             </Link>
                                             <Link
                                                 href={member.socials.email}
@@ -123,7 +123,7 @@ export default function Partnership() {
                                         <Image
                                             src={member.testimonial.authorImage || "/placeholder.svg"}
                                             alt={member.testimonial.author}
-                                            className="w-7 h-7 rounded-full object-cover"
+                                            className="w-7 h-7 rounded-full object-contain object-center"
                                             width={28}
                                             height={28}
                                         />

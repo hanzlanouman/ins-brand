@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 
 import type React from "react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import { useState, useMemo, useCallback } from "react"
+import { useState, useMemo, useCallback, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,7 +12,6 @@ import { useRouter } from "next/navigation"
 export default function ContactForm() {
     const { ref, isVisible } = useScrollAnimation()
     const router = useRouter()
-
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -21,7 +21,13 @@ export default function ContactForm() {
     const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const qs = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null
+    // fire prefetch only once
+    const prefetchDone = useRef(false)
+
+    const qs =
+        typeof window !== "undefined"
+            ? new URLSearchParams(window.location.search)
+            : null
 
     const targetUrl = useMemo(() => {
         const params = new URLSearchParams()
@@ -30,14 +36,16 @@ export default function ContactForm() {
         return `/book-your-call${params.toString() ? `?${params.toString()}` : ""}`
     }, [formData.name, formData.email])
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         const { name, value } = e.target
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
     const prefetchBooking = useCallback(() => {
-        // router.prefetch may not return a Promise in some Next.js versions/types,
-        // normalize to a Promise so .catch can be used safely.
+        if (prefetchDone.current) return
+        prefetchDone.current = true
         Promise.resolve(router.prefetch(targetUrl)).catch(() => { })
     }, [router, targetUrl])
 
@@ -46,8 +54,7 @@ export default function ContactForm() {
         if (loading) return
         setLoading(true)
 
-        // kick off prefetch immediately
-        prefetchBooking()
+        prefetchBooking() // ensure it’s already warmed
 
         const payload = {
             name: formData.name.trim(),
@@ -77,8 +84,6 @@ export default function ContactForm() {
                 router.push(targetUrl)
                 return
             }
-            // stay on page if failure
-            // optional: show an error toast here
             console.error("Lead submit failed", { status: res.status, json })
         } catch (err) {
             console.error("Network error submitting lead", err)
@@ -104,8 +109,7 @@ export default function ContactForm() {
                         Book Your <span className="text-primary">Free Strategy Call</span>
                     </h2>
                     <p className="mt-4 text-lg text-muted-foreground md:text-center">
-                        No sales pressure. No hidden fees. Just a real 15-minute conversation about how we can help your dealership
-                        grow.
+                        No sales pressure. No hidden fees. Just a real 15-minute conversation about how we can help your dealership grow.
                     </p>
                 </div>
 
@@ -117,6 +121,7 @@ export default function ContactForm() {
                             placeholder="Your Name"
                             value={formData.name}
                             onChange={handleChange}
+                            onFocus={prefetchBooking} // prefetch on first focus
                             required
                             className="bg-card border-border/50"
                             disabled={loading}
@@ -159,14 +164,28 @@ export default function ContactForm() {
                         type="submit"
                         className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 cursor-pointer"
                         disabled={loading}
-                        onMouseEnter={prefetchBooking}
-                        onTouchStart={prefetchBooking}
                     >
                         {loading ? (
                             <span className="inline-flex items-center justify-center gap-2">
-                                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                    <path className="opacity-75" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" fill="currentColor" />
+                                <svg
+                                    className="animate-spin h-4 w-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    aria-hidden="true"
+                                >
+                                    <circle
+                                        className="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                    />
+                                    <path
+                                        className="opacity-75"
+                                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                        fill="currentColor"
+                                    />
                                 </svg>
                                 Submitting…
                             </span>
