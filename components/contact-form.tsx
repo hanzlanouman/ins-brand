@@ -154,7 +154,6 @@ export default function ContactForm() {
                         placeholder="What's your biggest challenge online?"
                         value={formData.challenge}
                         onChange={handleChange}
-                        required
                         rows={4}
                         className="bg-card border-border/50 resize-none"
                         disabled={loading}
