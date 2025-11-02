@@ -31,7 +31,7 @@ export default function Demo() {
                     {/* Website Preview */}
                     <div className="rounded-xl overflow-hidden bg-muted border border-border shadow-lg">
                         <Image
-                            src="/car-dealership-website.jpg"
+                            src="/ex.png"
                             alt="Summit Auto CA Demo Site"
                             className="w-full h-auto object-cover"
                             width={800}
