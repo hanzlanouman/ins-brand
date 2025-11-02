@@ -2,13 +2,16 @@
 
 import type React from "react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import { useState } from "react"
+import { useState, useMemo, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useRouter } from "next/navigation"
 
 export default function ContactForm() {
     const { ref, isVisible } = useScrollAnimation()
+    const router = useRouter()
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -16,28 +19,79 @@ export default function ContactForm() {
         challenge: "",
     })
     const [submitted, setSubmitted] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    const qs = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null
+
+    const targetUrl = useMemo(() => {
+        const params = new URLSearchParams()
+        if (formData.name) params.set("name", formData.name)
+        if (formData.email) params.set("email", formData.email)
+        return `/book-your-call${params.toString() ? `?${params.toString()}` : ""}`
+    }, [formData.name, formData.email])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        const params = new URLSearchParams({
-            name: formData.name,
-            email: formData.email,
-        }).toString()
+    const prefetchBooking = useCallback(() => {
+        // router.prefetch may not return a Promise in some Next.js versions/types,
+        // normalize to a Promise so .catch can be used safely.
+        Promise.resolve(router.prefetch(targetUrl)).catch(() => { })
+    }, [router, targetUrl])
 
-        // In production, this would be a real backend endpoint
-        console.log("Form data:", formData)
-        window.location.href = `/book-your-call?${params}`
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        if (loading) return
+        setLoading(true)
+
+        // kick off prefetch immediately
+        prefetchBooking()
+
+        const payload = {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            dealership: formData.dealershipName.trim(),
+            message: formData.challenge.trim(),
+            utm: {
+                source: qs?.get("utm_source") ?? "",
+                medium: qs?.get("utm_medium") ?? "",
+                campaign: qs?.get("utm_campaign") ?? "",
+            },
+        }
+
+        try {
+            const res = await fetch("/api/leads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+                cache: "no-store",
+                keepalive: true,
+            })
+
+            const json: { ok?: boolean } = await res.json().catch(() => ({} as { ok?: boolean }))
+
+            if (res.ok && json.ok) {
+                setSubmitted(true)
+                router.push(targetUrl)
+                return
+            }
+            // stay on page if failure
+            // optional: show an error toast here
+            console.error("Lead submit failed", { status: res.status, json })
+        } catch (err) {
+            console.error("Network error submitting lead", err)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
         <section
             id="contact"
             ref={ref}
+            aria-busy={loading ? "true" : "false"}
             className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
         >
@@ -65,6 +119,7 @@ export default function ContactForm() {
                             onChange={handleChange}
                             required
                             className="bg-card border-border/50"
+                            disabled={loading}
                         />
                         <Input
                             type="email"
@@ -74,6 +129,7 @@ export default function ContactForm() {
                             onChange={handleChange}
                             required
                             className="bg-card border-border/50"
+                            disabled={loading}
                         />
                     </div>
 
@@ -85,6 +141,7 @@ export default function ContactForm() {
                         onChange={handleChange}
                         required
                         className="bg-card border-border/50"
+                        disabled={loading}
                     />
 
                     <Textarea
@@ -95,13 +152,27 @@ export default function ContactForm() {
                         required
                         rows={4}
                         className="bg-card border-border/50 resize-none"
+                        disabled={loading}
                     />
 
                     <Button
                         type="submit"
                         className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 cursor-pointer"
+                        disabled={loading}
+                        onMouseEnter={prefetchBooking}
+                        onTouchStart={prefetchBooking}
                     >
-                        Book My Free 15-Min Call
+                        {loading ? (
+                            <span className="inline-flex items-center justify-center gap-2">
+                                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                    <path className="opacity-75" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" fill="currentColor" />
+                                </svg>
+                                Submitting…
+                            </span>
+                        ) : (
+                            "Book My Free 15-Min Call"
+                        )}
                     </Button>
 
                     <p className="text-xs text-muted-foreground text-center pt-2">
