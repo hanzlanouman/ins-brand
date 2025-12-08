@@ -20,6 +20,7 @@ export default function HeroContent() {
                 <div className="flex md:flex-col md:items-center gap-2 pt-4">
                     <PrimaryCTA
                         id="hero-cta"
+                        data-staxly-event="hero-cta-click"
                         onClick={() => {
                             // defer by one frame to allow Chrome focus propagation
                             requestAnimationFrame(() => {

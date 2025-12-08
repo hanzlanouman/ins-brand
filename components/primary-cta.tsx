@@ -122,6 +122,7 @@ export function PrimaryCTA({
             onClick={handleClick}
             disabled={busy}
             className={base}
+            data-staxly-event="hero_primary_cta_click"
             aria-busy={busy}
             onMouseDown={(e) => {
                 // click ripple

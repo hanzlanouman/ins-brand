@@ -38,6 +38,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://assets.calendly.com" />
         <link rel="dns-prefetch" href="//assets.calendly.com" />
+        <script async src="http://localhost:3000/api/analytics/script?key=stk_pub_lxF1rYrX77R5GIZI1-YPccvW" defer></script>
       </head>
       <body className={`font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
