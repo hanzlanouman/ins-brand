@@ -20,18 +20,10 @@ const Body = z.object({
     .optional(),
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  { auth: { persistSession: false } }
-);
-
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for") ?? "";
   const ua = req.headers.get("user-agent") ?? "";
-  const site = process.env.NEXT_PUBLIC_SITE_NAME || "Staxly";
+  const site = process.env.NEXT_PUBLIC_SITE_NAME || "Arfah Ali";
 
   let parsed: z.infer<typeof Body>;
   try {
@@ -58,47 +50,41 @@ export async function POST(req: NextRequest) {
     `IP: ${ip}\n` +
     `UA: ${ua}`;
 
-  // Parallel ops
-  const insertP = supabase.from("leads").insert({
-      name: parsed.name,
-      email: parsed.email,
-      dealership: parsed.dealership,
-      message: parsed.message,
-      utm: parsed.utm ?? null,
-      ip,
-      user_agent: ua,
-    });
+  const insertP = createLeadInsert(parsed, ip, ua);
+  const emailP = createLeadEmail(subj, text, parsed.email);
 
-  // Email with hard timeout (800 ms)
-  const emailP = withTimeout(
-    resend.emails.send({
-      from: process.env.LEAD_NOTIFY_FROM!,
-      to: process.env.LEAD_NOTIFY_TO!,
-      subject: subj,
-      text,
-      replyTo: parsed.email,
-    }),
-    800
+  const settled = await Promise.allSettled(
+    [insertP, emailP].filter(Boolean) as Promise<unknown>[]
   );
 
-  // wait for DB, race/ignore slow email
-  const [dbRes] = await Promise.allSettled([insertP, emailP]);
-
-  if (dbRes.status === "rejected") {
+  const dbRes = settled[0];
+  if (insertP && dbRes?.status === "rejected") {
     return new Response(
       JSON.stringify({ ok: false, error: "DB insert failed" }),
       { status: 500 }
     );
   }
-  const dbVal = dbRes.value as { error?: { message?: string } | null };
-  if (dbVal?.error) {
-    return new Response(
-      JSON.stringify({ ok: false, error: dbVal.error.message }),
-      { status: 500 }
-    );
+
+  if (insertP && dbRes?.status === "fulfilled") {
+    const dbVal = dbRes.value as { error?: { message?: string } | null };
+    if (dbVal?.error) {
+      return new Response(
+        JSON.stringify({ ok: false, error: dbVal.error.message }),
+        { status: 500 }
+      );
+    }
   }
 
-  return new Response(JSON.stringify({ ok: true }), { status: 200 });
+  return new Response(
+    JSON.stringify({
+      ok: true,
+      integrations: {
+        database: Boolean(insertP),
+        email: Boolean(emailP),
+      },
+    }),
+    { status: 200 }
+  );
 }
 
 // Promise timeout helper
@@ -108,4 +94,50 @@ function withTimeout<T>(p: Promise<T>, ms: number): Promise<T | "timeout"> {
     (resolve) => (t = setTimeout(() => resolve("timeout"), ms))
   );
   return Promise.race([p.finally(() => clearTimeout(t)), timer]);
+}
+
+function createLeadInsert(
+  parsed: z.infer<typeof Body>,
+  ip: string,
+  ua: string
+) {
+  const url = process.env.SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !serviceRoleKey) return null;
+
+  const supabase = createClient(url, serviceRoleKey, {
+    auth: { persistSession: false },
+  });
+
+  return supabase.from("leads").insert({
+    name: parsed.name,
+    email: parsed.email,
+    dealership: parsed.dealership,
+    message: parsed.message,
+    utm: parsed.utm ?? null,
+    ip,
+    user_agent: ua,
+  });
+}
+
+function createLeadEmail(subject: string, text: string, replyTo: string) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.LEAD_NOTIFY_FROM;
+  const to = process.env.LEAD_NOTIFY_TO;
+
+  if (!apiKey || !from || !to) return null;
+
+  const resend = new Resend(apiKey);
+
+  return withTimeout(
+    resend.emails.send({
+      from,
+      to,
+      subject,
+      text,
+      replyTo,
+    }),
+    800
+  );
 }
