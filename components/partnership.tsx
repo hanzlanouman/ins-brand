@@ -2,29 +2,13 @@
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import Link from "next/link"
-import { Linkedin, Mail, Globe } from "lucide-react"
+import { Linkedin, Mail, Instagram } from "lucide-react"
 import Image from "next/image"
 
 const TEAM = [
     {
-        name: "Hanzla",
-        role: "Technical Lead & Client Fulfillment",
-        image: "/hanzla.jpg",
-        testimonial: {
-            quote:
-                "Having been in the industry for 20 years, Hanzla is one of the best full-stack developers I've ever worked with. An unstoppable powerhouse.",
-            author: "Amir Deilami",
-            authorImage: "/amir.webp",
-        },
-        socials: {
-            linkedin: "https://www.linkedin.com/in/hanzlanouman/",
-            website: "https://hanzla.tech",
-            email: "mailto:hanzlanouman@gmail.com",
-        },
-    },
-    {
-        name: "Arfah",
-        role: "Marketing Lead & Client Success",
+        name: "Arfah Ali",
+        role: "Content Strategist, Creator Support, and Personal Brand Partner",
         image: "/arfah.jpeg",
         testimonial: {
             quote:
@@ -33,9 +17,9 @@ const TEAM = [
             authorImage: "/aaras.jpg",
         },
         socials: {
-            linkedin: "https://www.linkedin.com/in/web-and-app-developer-expert/",
-            website: "https://arfah.tech",
-            email: "mailto:arfahali994@gmail.com",
+            linkedin: "https://www.linkedin.com/in/arfahali/",
+            instagram: "https://instagram.com/arfah_talks",
+            email: "mailto:arfahaliqureshi@gmail.com",
         },
     },
 ]
@@ -54,15 +38,15 @@ export default function Partnership() {
                 <div className="mb-16">
                     <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">BUILT FOR YOU</p>
                     <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground">
-                        Direct Access to <span className="text-primary">Your Co-Founders</span>
+                        Work Directly with <span className="text-primary">Arfah</span>
                     </h2>
                     <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-                        You work directly with Hanzla and Arfah—no delays, no confusion, no corporate overhead. Just two co-founders
-                        committed to your success.
+                        No agency maze. No handoff culture. You work directly with Arfah on the strategy, content direction,
+                        and brand clarity behind the work.
                     </p>
                 </div>
 
-                <div className="grid gap-12 lg:grid-cols-2">
+                <div className="grid gap-12 lg:grid-cols-1">
                     {TEAM.map((member, idx) => (
                         <div key={idx} className="flex flex-col gap-6">
                             <div className="flex flex-col gap-4">
@@ -93,13 +77,13 @@ export default function Partnership() {
                                                 <Linkedin size={16} />
                                             </Link>
                                             <Link
-                                                href={member.socials.website}
+                                                href={member.socials.instagram}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-                                                aria-label="Website"
+                                                aria-label="Instagram"
                                             >
-                                                <Globe size={16} />
+                                                <Instagram size={16} />
                                             </Link>
                                             <Link
                                                 href={member.socials.email}

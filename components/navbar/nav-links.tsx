@@ -8,13 +8,15 @@ const scrollToSection = (id: string) => {
 
 export default function NavLinks() {
     const links = [
-        { id: "services", label: "Our Services" },
-        // { id: "partnership", label: "Our Partnership" },
+        // { id: "process", label: "How It Works" },
+        // { id: "proof", label: "Proof" },
+        { id: "pricing", label: "Pricing" },
+        // { id: "faq", label: "FAQ" },
     ]
 
     return (
         <div className="flex items-center gap-8">
-            {links.map((link) => (
+            {links?.map((link) => (
                 <button
                     key={link.id}
                     onClick={() => scrollToSection(link.id)}

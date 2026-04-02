@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 
 import type React from "react"
@@ -18,7 +17,6 @@ export default function ContactForm() {
         dealershipName: "",
         challenge: "",
     })
-    const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
 
     // fire prefetch only once
@@ -80,7 +78,6 @@ export default function ContactForm() {
             const json: { ok?: boolean } = await res.json().catch(() => ({} as { ok?: boolean }))
 
             if (res.ok && json.ok) {
-                setSubmitted(true)
                 router.push(targetUrl)
                 return
             }
@@ -106,10 +103,10 @@ export default function ContactForm() {
                         LET&apos;S GET STARTED
                     </p>
                     <h2 className="text-5xl md:text-center sm:text-7xl font-bold tracking-tight text-foreground">
-                        Book Your <span className="text-primary">Free Strategy Call</span>
+                        Book a <span className="text-primary">Call</span>
                     </h2>
-                    <p className="mt-4 text-lg text-muted-foreground md:text-center">
-                        No sales pressure. No hidden fees. Just a real 15-minute conversation about how we can help your dealership grow.
+                    <p className="mt-4 text-lg text-muted-foreground md:text-center max-w-2xl mx-auto">
+                        Short call. Clear next step. No long sales process.
                     </p>
                 </div>
 
@@ -141,7 +138,7 @@ export default function ContactForm() {
                     <Input
                         type="text"
                         name="dealershipName"
-                        placeholder="Dealership Name"
+                        placeholder="Brand Name or Instagram Handle"
                         value={formData.dealershipName}
                         onChange={handleChange}
                         required
@@ -151,7 +148,7 @@ export default function ContactForm() {
 
                     <Textarea
                         name="challenge"
-                        placeholder="What's your biggest challenge online?"
+                        placeholder="What do you want help with most right now?"
                         value={formData.challenge}
                         onChange={handleChange}
                         rows={4}
@@ -189,12 +186,12 @@ export default function ContactForm() {
                                 Submitting…
                             </span>
                         ) : (
-                            "Book My Free 15-Min Call"
+                            "Book My Free 15-Min Strategy Call"
                         )}
                     </Button>
 
                     <p className="text-xs text-muted-foreground text-center pt-2">
-                        No spam. We&apos;ll confirm your time via email within 2 hours.
+                        We&apos;ll confirm your next step by email.
                     </p>
                 </form>
             </div>

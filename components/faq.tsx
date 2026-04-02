@@ -3,18 +3,12 @@
 import { useState } from "react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
-// Simple animated + ↔ − icon
 function PlusMinus({ open }: { open: boolean }) {
     return (
-        <span
-            className="relative inline-block h-5 w-5"
-            aria-hidden="true"
-        >
-            {/* horizontal bar */}
+        <span className="relative inline-block h-5 w-5" aria-hidden="true">
             <span className="absolute left-0 top-1/2 h-[2px] w-full -translate-y-1/2 bg-current transition-transform duration-300" />
-            {/* vertical bar scales to 0 when open */}
             <span
-                className={`absolute left-1/2 top-0 w-[2px] h-full -translate-x-1/2 bg-current origin-center transition-transform duration-300 ${open ? "scale-y-0" : "scale-y-100"
+                className={`absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-current origin-center transition-transform duration-300 ${open ? "scale-y-0" : "scale-y-100"
                     }`}
             />
         </span>
@@ -23,85 +17,96 @@ function PlusMinus({ open }: { open: boolean }) {
 
 const FAQS = [
     {
-        question: "What exactly do you build for dealerships?",
+        question: "What exactly is included each month?",
         answer:
-            "A fast, professional website that converts visitors to leads. Plus automated social media posting, inventory sync, and a 24/7 AI assistant that answers customer questions and books test drives.",
+            "Depending on your plan, the work can include strategy, content planning, hooks, script support, caption direction, editing support, profile clarity, and publishing guidance.",
     },
     {
-        question: "Do I need to update my inventory twice?",
+        question: "Do I need to be on camera myself?",
         answer:
-            "No. You update once. Our system automatically syncs to your website, posts to Facebook & Instagram, and your AI assistant knows about every car. One source of truth.",
+            "Yes, if you want to build a personal brand. Arfah helps make filming simpler and more structured, but you still need to be the face and voice of the content.",
     },
     {
-        question: "How quickly can you get me live?",
+        question: "Will you help me figure out what to say?",
         answer:
-            "After our strategy call, we typically launch within 2-3 weeks. You'll have a professional website, automations, and your assistant live and handling leads.",
+            "Yes. A big part of the service is removing the guesswork. You get clearer topics, stronger hooks, better talking points, and a more intentional content direction.",
     },
     {
-        question: "What if I need changes or support after launch?",
+        question: "Is this only for established creators or big accounts?",
         answer:
-            "You get us. Direct access to our team for updates, questions, and improvements. We don't hand you off to support—you work with the people who built it.",
+            "No. It works for newer accounts that need clarity and for existing founders or experts who already have an audience but want a sharper content system.",
     },
     {
-        question: "Is this just website design, or do you handle the whole system?",
+        question: "Do you guarantee followers, reach, or virality?",
         answer:
-            "It's the whole system. Website design, hosting, inventory integration, social media automation, AI setup, and ongoing support. We're your complete digital partner.",
+            "No. The service is built around better positioning, stronger content, and consistency. Those improve your chances of growth, but no honest service can guarantee virality.",
+    },
+    {
+        question: "Can I start small or pause later?",
+        answer:
+            "Yes. These are monthly retainers, not lock-in contracts. You can start with the level of support that fits now and adjust as the brand grows.",
     },
 ]
 
 export default function FAQ() {
     const { ref, isVisible } = useScrollAnimation()
-    const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-    const toggleFAQ = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index)
-    }
+    const [openIndex, setOpenIndex] = useState<number | null>(0)
 
     return (
         <section
             ref={ref}
-            className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            id="faq"
+            className={`w-full bg-background px-4 pb-8 pt-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
         >
-            <div className="mx-auto max-w-5xl">
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">COMMON QUESTIONS</p>
-                <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground">
-                    Your <span className="text-primary">Questions</span> Answered
-                </h2>
-                <p className="mt-4 text-lg text-muted-foreground">Everything you need to know about how we work.</p>
+            <div className="mx-auto max-w-6xl">
+                <div className="grid gap-10">
+                    <div className="lg:pt-3">
+                        <h2 className="text-4xl text-center font-bold tracking-tight text-foreground sm:text-6xl">
+                            FAQ
+                        </h2>
+                        <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
+                            Straight answers to the things people usually want to know before they commit.
+                        </p>
+                    </div>
 
-                <div className="mt-12 space-y-4">
-                    {FAQS.map((faq, idx) => {
-                        const open = openIndex === idx
-                        return (
-                            <div key={idx} className="border border-border rounded-lg overflow-hidden">
-                                <button
-                                    onClick={() => toggleFAQ(idx)}
-                                    className="w-full flex items-center justify-between gap-4 bg-card px-6 py-4 text-left transition-colors hover:bg-muted"
-                                    aria-expanded={open}
-                                    aria-controls={`faq-panel-${idx}`}
-                                >
-                                    <span className="font-medium text-foreground text-sm">{faq.question}</span>
-                                    <div className="flex-shrink-0 text-primary">
-                                        <PlusMinus open={open} />
-                                    </div>
-                                </button>
+                    <div className="space-y-4">
+                        {FAQS.map((faq, idx) => {
+                            const open = openIndex === idx
 
-                                {/* Smooth open/close using grid rows */}
-                                <div
-                                    id={`faq-panel-${idx}`}
-                                    className={`grid transition-all duration-300 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                                        }`}
-                                >
-                                    <div className="overflow-hidden">
-                                        <div className="border-t border-border bg-muted/30 px-6 py-4">
-                                            <p className="text-muted-foreground text-sm">{faq.answer}</p>
+                            return (
+                                <div key={faq.question} className="overflow-hidden rounded-[22px] border border-border/70 bg-card">
+                                    <button
+                                        onClick={() => setOpenIndex(open ? null : idx)}
+                                        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-muted/30"
+                                        aria-expanded={open}
+                                        aria-controls={`faq-panel-${idx}`}
+                                    >
+                                        <span className="pr-4 text-sm font-medium text-foreground sm:text-base">
+                                            {faq.question}
+                                        </span>
+                                        <div className="flex-shrink-0 text-primary">
+                                            <PlusMinus open={open} />
+                                        </div>
+                                    </button>
+
+                                    <div
+                                        id={`faq-panel-${idx}`}
+                                        className={`grid transition-all duration-300 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                                            }`}
+                                    >
+                                        <div className="overflow-hidden">
+                                            <div className="border-t border-border/60 bg-muted/20 px-6 py-4">
+                                                <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                                                    {faq.answer}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </section>

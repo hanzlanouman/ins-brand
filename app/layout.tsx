@@ -1,11 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Roboto } from "next/font/google"
+import { Geist_Mono, Manrope, Sora, Syne } from "next/font/google"
 import "@/app/globals.css"
 
-const fontSans = Geist({
+const fontSans = Manrope({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-manrope",
   display: "swap",
 })
 
@@ -14,18 +14,23 @@ const fontMono = Geist_Mono({
   variable: "--font-geist-mono",
   display: "swap",
 })
-const fontHero = Roboto({
+const fontHero = Sora({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
-  variable: "--font-roboto",
+  weight: ["600", "700", "800"],
+  variable: "--font-sora",
+  display: "swap",
+})
+const fontBrand = Syne({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-syne",
   display: "swap",
 })
 import { ThemeProvider } from "next-themes"
 import Navbar from "@/components/navbar/navbar"
-import Footer from "@/components/footer"
 export const metadata: Metadata = {
-  title: "Staxly Solutions - Smart Websites and Solutions for dealerships.",
-  description: "Staxly Solutions provides smart websites and digital solutions tailored for dealerships. Boost your online presence and drive sales with our expert services.",
+  title: "Arfah Ali - Content Strategy and Instagram Growth",
+  description: "Arfah Ali helps founders and personal brands grow on Instagram with content strategy, short-form content creation, and personal branding support.",
 }
 
 export default function RootLayout({
@@ -40,11 +45,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//assets.calendly.com" />
         <script async src="http://localhost:3000/api/analytics/script?key=stk_pub_lxF1rYrX77R5GIZI1-YPccvW" defer></script>
       </head>
-      <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <body className={`${fontSans.variable} ${fontMono.variable} ${fontHero.variable} ${fontBrand.variable} font-sans antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </ThemeProvider>
       </body>
 

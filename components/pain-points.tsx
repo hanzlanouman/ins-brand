@@ -6,28 +6,27 @@ import { TrendingDown, Clock, MessageSquare } from "lucide-react"
 const PAIN_POINTS = [
     {
         icon: TrendingDown,
-        title: "Slow, outdated website",
-        loss: "$2,400",
-        description: "You lose a car sale every 3 days to slow load times and poor mobile experience.",
+        title: "Inconsistent content",
+        loss: "15+ ideas",
+        description: "Good ideas stay in drafts, so your page never gets the consistency needed for real growth.",
     },
     {
         icon: Clock,
-        title: "Manual inventory updates",
-        loss: "$1,800",
-        description: "15+ hours per week copy-pasting inventory to Facebook and your site.",
+        title: "Content takes too much time",
+        loss: "8+ hrs",
+        description: "Writing hooks, scripting, filming, and editing can eat the time you should be spending on the business itself.",
     },
     {
         icon: MessageSquare,
-        title: "Missing customer inquiries",
-        loss: "$3,200",
-        description: "Customers message at 9 PM. You respond at 9 AM. Competitors already won.",
+        title: "Unclear personal brand",
+        loss: "Low trust",
+        description: "People visit your profile, but they still do not clearly understand what you do, who you help, or why they should stay.",
     },
 ]
 
 export default function PainPoints() {
     const { ref, isVisible } = useScrollAnimation()
-    const totalLoss = "$7,400/month"
-    const annualLoss = "$88,800/year"
+
     return (
         <section
             ref={ref}
@@ -36,11 +35,11 @@ export default function PainPoints() {
         >
             <div className="mx-auto max-w-5xl">
                 <div className="mb-10">
-                    <p className="text-sm font-medium text-muted-foreground uppercase mb-2">Your Dealership is</p>
+                    <p className="text-sm font-medium text-muted-foreground uppercase mb-2">YOUR CONTENT IS</p>
                     <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-4">
-                        Losing <span className="text-primary">$7,400</span> monthly
+                        Slowing Your <span className="text-primary">Growth</span>
                     </h2>
-                    <p className="text-lg text-muted-foreground">Three problems. Three solutions. One path forward.</p>
+                    <p className="text-lg text-muted-foreground">Three common blockers. One clearer path forward.</p>
                 </div>
 
                 <div className="space-y-6 mb-12">
@@ -65,7 +64,7 @@ export default function PainPoints() {
                                 {/* Loss amount - right aligned */}
                                 <div className="shrink-0 text-right">
                                     <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{point.loss}</p>
-                                    <p className="text-sm text-muted-foreground">lost/month</p>
+                                    <p className="text-sm text-muted-foreground">stuck every month</p>
                                 </div>
                             </div>
                         )
@@ -74,13 +73,10 @@ export default function PainPoints() {
 
                 <div className="p-8 rounded-lg border-2 border-primary/20 bg-primary/5">
                     <div className="text-center">
-                        <p className="text-sm text-muted-foreground mb-2">Total monthly impact</p>
-                        <p className="text-5xl font-bold text-foreground mb-2">{totalLoss}</p>
-                        <p className="text-lg text-muted-foreground mb-4">
-                            That&apos;s <span className="font-semibold text-foreground">{annualLoss}</span> walking out your door.
-                        </p>
+                        <p className="text-sm text-muted-foreground mb-2">What changes when the system improves</p>
+                        <p className="text-5xl font-bold text-foreground mb-2">More clarity. More consistency.</p>
                         <p className="text-sm text-muted-foreground">
-                            Smart dealership sites typically pay for themselves in 2-3 months.
+                            Better content starts with better positioning, stronger hooks, and a process you can actually maintain.
                         </p>
                     </div>
                 </div>

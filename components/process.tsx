@@ -1,25 +1,33 @@
 "use client"
 
+import Image from "next/image"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { PrimaryCTA } from "./primary-cta"
 
 const PROCESS_STEPS = [
     {
         number: "01",
-        title: "Free Strategy Call",
-        description:
-            "We analyze your current website, inventory management, and lead capture gaps. You'll get a clear picture of what's working and what's costing you sales.",
+        title: "Research",
+        description: "We study your niche, profile, and the content angles already pulling attention.",
+        artwork: "/process-research.svg",
     },
     {
         number: "02",
-        title: "We Build Your Solution",
-        description:
-            "We map out your perfect digital system. 15 minutes, zero sales pressure. You leave with one actionable tactic to use today.",
+        title: "Plan & Script",
+        description: "We map out topics, hooks, and a monthly content direction you can actually use.",
+        artwork: "/process-script.svg",
     },
     {
         number: "03",
-        title: "Go Live & Get Leads",
-        description:
-            "We build your new site, connect your inventory, set up automations, and launch your 24/7 assistant. You stay focused on selling cars.",
+        title: "Create & Edit",
+        description: "You film with better structure, and the content gets shaped into stronger short-form assets.",
+        artwork: "/process-edit.svg",
+    },
+    {
+        number: "04",
+        title: "Publish",
+        description: "The goal is simple: content goes out consistently and the brand starts compounding.",
+        artwork: "/process-publish.svg",
     },
 ]
 
@@ -28,29 +36,56 @@ export default function Process() {
 
     return (
         <section
+            id="process"
             ref={ref}
-            className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
+            className={`relative w-full overflow-hidden bg-[#111317] px-4 py-20 text-white sm:px-6 lg:px-8 transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
-            <div className="mx-auto max-w-5xl">
-                <div className="mb-16">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">
-                        THE THREE-STEP PROCESS
-                    </p>
-                    <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground">
-                        From Your <span className="text-primary">First Message</span> to Results
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#111317,#16181d)]" />
+            <div className="pointer-events-none absolute -left-32 top-0 h-full w-[34rem] bg-[radial-gradient(circle_at_left,rgba(214,26,255,0.18),rgba(214,26,255,0.08)_32%,transparent_72%)]" />
+            <div className="mx-auto max-w-6xl">
+                <div className="relative mb-14 text-center">
+                    <h2 className="font-hero text-4xl font-bold tracking-tight sm:text-6xl">
+                        How It Works
                     </h2>
-                    <p className="mt-4 text-lg text-muted-foreground">Three clear steps. No guesswork. Complete transparency.</p>
                 </div>
 
-                <div className="grid gap-12 md:grid-cols-3">
-                    {PROCESS_STEPS.map((step, idx) => (
-                        <div key={idx} className="flex flex-col gap-4 border rounded-lg bg-primary-foreground/5 dark:bg-secondary/20 p-6 border-border/30">
-                            <div className="text-5xl font-bold text-foreground/10">{step.number}</div>
-                            <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                            <p className="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
-                        </div>
+                <div className="relative grid gap-10 md:grid-cols-2 xl:grid-cols-4">
+                    {PROCESS_STEPS.map((step) => (
+                        <article key={step.number} className="text-center">
+                            <div className="mx-auto flex h-36 w-36 items-center justify-center rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] shadow-[0_24px_50px_-32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(214,26,255,0.06)] backdrop-blur-sm">
+                                <Image
+                                    src={step.artwork}
+                                    alt={`${step.title} illustration`}
+                                    width={132}
+                                    height={132}
+                                    className="h-28 w-28"
+                                />
+                            </div>
+                            <h3 className="mt-8 text-3xl font-bold tracking-tight text-white">
+                                {step.number}. {step.title}
+                            </h3>
+                            <p className="mx-auto mt-4 max-w-xs text-base leading-relaxed text-white/74">
+                                {step.description}
+                            </p>
+                        </article>
                     ))}
+                </div>
+
+                <div className="relative mt-14 flex justify-center">
+                    <PrimaryCTA
+                        onClick={() => {
+                            requestAnimationFrame(() => {
+                                document.getElementById("contact")?.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                })
+                            })
+                        }}
+                    >
+                        See If This Fits
+                    </PrimaryCTA>
                 </div>
             </div>
         </section>

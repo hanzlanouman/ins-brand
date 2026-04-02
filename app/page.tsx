@@ -1,23 +1,20 @@
 import Hero from "@/components/hero/hero"
-import Services from "@/components/services"
+import BeforeAfterStrip from "@/components/before-after-strip"
 import Process from "@/components/process"
-import FAQ from "@/components/faq"
-import PainPoints from "@/components/pain-points"
-import Demo from "@/components/demo"
-import Partnership from "@/components/partnership"
-import ContactForm from "@/components/contact-form"
+import ProofGrid from "@/components/proof-grid"
+import Pricing from "@/components/pricing"
+import ContactCTA from "@/components/contact-cta"
 
 export default function Home() {
   return (
     <main className="min-h-screen mx-auto">
       <Hero />
-      <PainPoints />
-      <Services />
-      <Demo />
+      <BeforeAfterStrip />
       <Process />
-      <Partnership />
-      <ContactForm />
-      <FAQ />
+      <ProofGrid />
+      <Pricing />
+      {/* <FAQ /> */}
+      <ContactCTA />
     </main>
   )
 }

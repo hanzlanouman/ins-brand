@@ -2,27 +2,23 @@
 
 import { PrimaryCTA } from "../primary-cta"
 
-
 export default function HeroContent() {
     return (
-        <div className={`relative z-10 max-w-5xl mx-auto px-4 lg:px-0 md:text-center font-hero`}>
-            <div className="md:py-16 py-8 space-y-6 md:space-y-0">
-
-                <h1 className="text-[4rem] lg:text-7xl   font-extrabold leading-tight mt-4 mb-4">
-                    <span className="text-foreground text-balance block">A Website That Finally Works</span>
-                    <span className="text-primary text-balance block "> Run by a Real Team.</span>
+        <div className="relative z-10 mx-auto max-w-6xl px-4 font-hero text-center lg:px-0">
+            <div className="py-8 md:py-16">
+                <h1 className="mx-auto uppercase text-[3.3rem] font-extrabold  tracking-tight sm:text-6xl lg:text-7xl">
+                    <span className=" text-balance text-foreground">Build an Instagram brand </span>
+                    <span className="mt-2  text-balance text-primary">people remember.</span>
                 </h1>
 
-                <p className="text-base sm:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                    We build your high-performance website, run your automatic social media posting, and capture leads with a 24/7 website assistant. We handle your digital foundation, so you can get back to selling.
+                <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                    Strategy, short-form content, and personal branding support that turns a scattered profile into something clear, credible, and worth following.
                 </p>
 
-                <div className="flex md:flex-col md:items-center gap-2 pt-4">
+                <div className="flex justify-center pt-6">
                     <PrimaryCTA
                         id="hero-cta"
-                        data-staxly-event="hero-cta-click"
                         onClick={() => {
-                            // defer by one frame to allow Chrome focus propagation
                             requestAnimationFrame(() => {
                                 document.getElementById("contact")?.scrollIntoView({
                                     behavior: "smooth",
@@ -32,6 +28,7 @@ export default function HeroContent() {
                         }}
                     />
                 </div>
+
             </div>
         </div>
     )
