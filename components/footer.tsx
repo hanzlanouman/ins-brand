@@ -16,12 +16,12 @@ export default function Footer() {
         },
         {
             label: "YouTube",
-            href: "https://www.youtube.com/@arfah_talks",
+            href: "https://www.youtube.com/@arfah_talks?sub_confirmation=1",
             icon: Youtube,
         },
         {
             label: "LinkedIn",
-            href: "https://www.linkedin.com/in/arfahali/",
+            href: "https://www.linkedin.com/in/arfahali-personalbrandingstrategist/",
             icon: Linkedin,
         },
     ]

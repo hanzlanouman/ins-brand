@@ -9,8 +9,8 @@ import BrandMark from "./brand-mark"
 const CONTACT_LINKS = [
     { label: "Email", href: "mailto:arfahaliqureshi@gmail.com", icon: Mail },
     { label: "Instagram", href: "https://instagram.com/arfah_talks", icon: Instagram },
-    { label: "YouTube", href: "https://www.youtube.com/@arfah_talks", icon: Youtube },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/arfahali/", icon: Linkedin },
+    { label: "YouTube", href: "https://www.youtube.com/@arfah_talks?sub_confirmation=1", icon: Youtube },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/arfahali-personalbrandingstrategist/", icon: Linkedin },
 ]
 
 export default function ContactCTA() {

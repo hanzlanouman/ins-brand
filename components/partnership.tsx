@@ -17,7 +17,7 @@ const TEAM = [
             authorImage: "/aaras.jpg",
         },
         socials: {
-            linkedin: "https://www.linkedin.com/in/arfahali/",
+            linkedin: "https://www.linkedin.com/in/arfahali-personalbrandingstrategist/",
             instagram: "https://instagram.com/arfah_talks",
             email: "mailto:arfahaliqureshi@gmail.com",
         },
