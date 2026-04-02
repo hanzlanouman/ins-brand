@@ -46,15 +46,6 @@ const PLANS = [
 export default function Pricing() {
     const { ref, isVisible } = useScrollAnimation()
 
-    const handlePlanClick = () => {
-        requestAnimationFrame(() => {
-            document.getElementById("contact")?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            })
-        })
-    }
-
     return (
         <section
             id="pricing"
@@ -129,7 +120,7 @@ export default function Pricing() {
                                 ))}
                             </div>
 
-                            <div className="mt-8">
+                            {/* <div className="mt-8">
                                 <button
                                     type="button"
                                     onClick={handlePlanClick}
@@ -140,7 +131,7 @@ export default function Pricing() {
                                 >
                                     {plan.cta}
                                 </button>
-                            </div>
+                            </div> */}
                         </article>
                     ))}
                 </div>

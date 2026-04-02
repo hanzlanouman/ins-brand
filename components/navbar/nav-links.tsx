@@ -11,7 +11,7 @@ export default function NavLinks() {
         // { id: "process", label: "How It Works" },
         // { id: "proof", label: "Proof" },
         { id: "pricing", label: "Pricing" },
-        // { id: "faq", label: "FAQ" },
+        { id: "faq", label: "FAQ" },
     ]
 
     return (
