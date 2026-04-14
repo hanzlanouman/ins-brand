@@ -3,5 +3,5 @@
 import BrandMark from "../brand-mark"
 
 export default function Logo() {
-    return <BrandMark size="md" />
+    return <BrandMark size="lg" />
 }

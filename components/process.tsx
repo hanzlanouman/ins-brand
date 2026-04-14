@@ -7,26 +7,26 @@ import { PrimaryCTA } from "./primary-cta"
 const PROCESS_STEPS = [
     {
         number: "01",
-        title: "Research",
-        description: "We study your niche, profile, and the content angles already pulling attention.",
+        title: "Discover",
+        description: "We map the business, the offer, and the gaps across software, funnel, content, and positioning.",
         artwork: "/process-research.svg",
     },
     {
         number: "02",
-        title: "Plan & Script",
-        description: "We map out topics, hooks, and a monthly content direction you can actually use.",
+        title: "Plan",
+        description: "The direction gets translated into pages, campaigns, automations, content systems, and growth priorities.",
         artwork: "/process-script.svg",
     },
     {
         number: "03",
-        title: "Create & Edit",
-        description: "You film with better structure, and the content gets shaped into stronger short-form assets.",
+        title: "Build & Create",
+        description: "We produce the assets that matter, from software and landing pages to creative, content, and conversion support.",
         artwork: "/process-edit.svg",
     },
     {
         number: "04",
-        title: "Publish",
-        description: "The goal is simple: content goes out consistently and the brand starts compounding.",
+        title: "Launch & Improve",
+        description: "Everything gets refined around performance so the system compounds instead of restarting every month.",
         artwork: "/process-publish.svg",
     },
 ]
@@ -43,8 +43,8 @@ export default function Process() {
             }`}
         >
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#111317,#16181d)]" />
-            <div className="pointer-events-none absolute -left-32 top-0 h-full w-[34rem] bg-[radial-gradient(circle_at_left,rgba(214,26,255,0.18),rgba(214,26,255,0.08)_32%,transparent_72%)]" />
-            <div className="mx-auto max-w-6xl">
+            <div className="pointer-events-none absolute -left-32 top-0 h-full w-[34rem] bg-[radial-gradient(circle_at_left,rgba(3,239,98,0.18),rgba(3,239,98,0.08)_32%,transparent_72%)]" />
+            <div className="mx-auto max-w-7xl">
                 <div className="relative mb-14 text-center">
                     <h2 className="font-hero text-4xl font-bold tracking-tight sm:text-6xl">
                         How It Works
@@ -54,7 +54,7 @@ export default function Process() {
                 <div className="relative grid gap-10 md:grid-cols-2 xl:grid-cols-4">
                     {PROCESS_STEPS.map((step) => (
                         <article key={step.number} className="text-center">
-                            <div className="mx-auto flex h-36 w-36 items-center justify-center rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] shadow-[0_24px_50px_-32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(214,26,255,0.06)] backdrop-blur-sm">
+                            <div className="mx-auto flex h-36 w-36 items-center justify-center rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] shadow-[0_24px_50px_-32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(3,239,98,0.07)] backdrop-blur-sm">
                                 <Image
                                     src={step.artwork}
                                     alt={`${step.title} illustration`}
@@ -84,7 +84,7 @@ export default function Process() {
                             })
                         }}
                     >
-                        See If This Fits
+                        Start the Conversation
                     </PrimaryCTA>
                 </div>
             </div>

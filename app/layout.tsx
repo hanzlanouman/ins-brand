@@ -29,8 +29,8 @@ const fontBrand = Syne({
 import { ThemeProvider } from "next-themes"
 import Navbar from "@/components/navbar/navbar"
 export const metadata: Metadata = {
-  title: "Arfah Ali - Content Strategy and Instagram Growth",
-  description: "Arfah Ali helps founders and personal brands grow on Instagram with content strategy, short-form content creation, and personal branding support.",
+  title: "Staxly Solutions - Software, Marketing, and Content Systems",
+  description: "Staxly Solutions helps founders and businesses ship web apps, build marketing systems, and create content that drives growth.",
 }
 
 export default function RootLayout({

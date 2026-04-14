@@ -8,23 +8,23 @@ const PLANS = [
         name: "Starter",
         price: "$199",
         cta: "Choose Starter",
-        volume: ["3 carousels", "12 reels", "7 stories"],
+        volume: ["Content strategy", "Landing page support", "Light automation support"],
         features: [
-            "Monthly content planning",
-            "Caption and posting support",
-            "Basic profile direction",
-            "Standard support",
+            "Monthly planning and direction",
+            "Basic funnel or website updates",
+            "Content support for steady output",
+            "Standard async support",
         ],
     },
     {
         name: "Growth",
         price: "$249",
         cta: "Choose Growth",
-        volume: ["5 carousels", "15 reels", "10 stories"],
+        volume: ["Website and funnel support", "Content system buildout", "Campaign and automation support"],
         features: [
-            "Content strategy and hooks",
-            "Script support",
-            "Caption writing",
+            "Strategy across software and marketing",
+            "Landing page and conversion support",
+            "Content planning and creative direction",
             "Priority support",
         ],
         featured: true,
@@ -33,18 +33,27 @@ const PLANS = [
         name: "Authority",
         price: "$299",
         cta: "Choose Authority",
-        volume: ["8 carousels", "20 reels", "15 stories"],
+        volume: ["Software plus growth support", "Content and campaign execution", "Higher-touch optimization"],
         features: [
-            "Personal brand strategy",
-            "Advanced scripting support",
-            "Repurposing guidance",
-            "Higher-touch support",
+            "Custom build and system consulting",
+            "Marketing operations support",
+            "Deeper content and creative strategy",
+            "Higher-touch collaboration",
         ],
     },
 ]
 
 export default function Pricing() {
     const { ref, isVisible } = useScrollAnimation()
+
+    const handlePlanClick = () => {
+        requestAnimationFrame(() => {
+            document.getElementById("contact")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        })
+    }
 
     return (
         <section
@@ -53,7 +62,7 @@ export default function Pricing() {
             className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
         >
-            <div className="mx-auto max-w-6xl">
+            <div className="mx-auto max-w-7xl">
                 <div className="mb-14 text-center">
                     <h2 className="font-hero text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
                         Monthly Packages
@@ -65,7 +74,7 @@ export default function Pricing() {
                         <article
                             key={plan.name}
                             className={`relative overflow-hidden rounded-[32px] border p-8 sm:p-10 ${plan.featured
-                                ? "border-primary/20 bg-[#171717] text-white shadow-[0_28px_80px_-48px_rgba(0,0,0,0.5),0_0_0_1px_rgba(214,26,255,0.08)]"
+                                ? "border-primary/20 bg-[#171717] text-white shadow-[0_28px_80px_-48px_rgba(0,0,0,0.5),0_0_0_1px_rgba(3,239,98,0.08)]"
                                 : "border-border/70 bg-card shadow-[0_24px_80px_-56px_rgba(0,0,0,0.22)]"
                                 } transition-colors duration-200 hover:border-primary/25`}
                         >
@@ -120,18 +129,18 @@ export default function Pricing() {
                                 ))}
                             </div>
 
-                            {/* <div className="mt-8">
+                            <div className="mt-8">
                                 <button
                                     type="button"
                                     onClick={handlePlanClick}
-                                    className={`inline-flex w-full cursor-pointer items-center justify-center rounded-full border px-4 py-3 text-md font-semibold transition-colors duration-200 ${plan.featured
-                                        ? "border-primary/40 bg-primary text-white hover:bg-[#e143ff]"
+                                    className={`inline-flex w-full cursor-pointer items-center justify-center rounded-xs border px-4 py-3 text-sm font-semibold transition-colors duration-200 ${plan.featured
+                                        ? "border-primary/40 bg-primary text-[#07150b] hover:bg-[#1af56f]"
                                         : "border-border bg-background text-foreground hover:border-primary/30 hover:bg-primary/5"
                                         }`}
                                 >
                                     {plan.cta}
                                 </button>
-                            </div> */}
+                            </div>
                         </article>
                     ))}
                 </div>

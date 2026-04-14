@@ -74,18 +74,26 @@ export default function MobileMenu({ isOpen, onClose }: Props) {
                         <li>
                             <button
                                 ref={firstLinkRef}
-                                onClick={() => scrollTo("process")}
+                                onClick={() => scrollTo("services")}
                                 className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
                             >
-                                How It Works
+                                Services
                             </button>
                         </li>
                         <li>
                             <button
-                                onClick={() => scrollTo("proof")}
+                                onClick={() => scrollTo("about")}
                                 className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
                             >
-                                Proof
+                                About
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => scrollTo("process")}
+                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
+                            >
+                                Process
                             </button>
                         </li>
                         <li>
@@ -93,7 +101,7 @@ export default function MobileMenu({ isOpen, onClose }: Props) {
                                 onClick={() => scrollTo("pricing")}
                                 className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
                             >
-                                Plans
+                                Packages
                             </button>
                         </li>
                         <li>

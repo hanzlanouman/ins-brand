@@ -8,9 +8,10 @@ const scrollToSection = (id: string) => {
 
 export default function NavLinks() {
     const links = [
-        // { id: "process", label: "How It Works" },
-        // { id: "proof", label: "Proof" },
-        { id: "pricing", label: "Pricing" },
+        { id: "services", label: "Services" },
+        { id: "about", label: "About" },
+        { id: "process", label: "Process" },
+        { id: "pricing", label: "Packages" },
         { id: "faq", label: "FAQ" },
     ]
 

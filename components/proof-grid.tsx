@@ -1,92 +1,137 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
-const BEFORE_ITEMS = ["/before-1.jpeg", "/before-2.jpeg", "/before-3.jpeg", "/before-4.jpeg"]
-const AFTER_ITEMS = ["/after-1.jpeg", "/after-2.jpeg", "/after-3.jpeg", "/after-4.jpeg"]
+const SERVICES = [
+    {
+        title: "Software Solutions",
+        description: "Apps, dashboards, portals, and internal tools built around the real workflow.",
+    },
+    {
+        title: "Funnels & Landing Pages",
+        description: "Offer pages and buyer journeys that help traffic convert more clearly.",
+    },
+    {
+        title: "Content & Growth Systems",
+        description: "Content, creative direction, and automation support that keep the brand moving.",
+    },
+]
 
-function ProofCard({ src, dark = false }: { src: string; dark?: boolean }) {
-    return (
-        <div
-            className={`overflow-hidden rounded-[24px] border p-2 shadow-[0_20px_60px_-52px_rgba(0,0,0,0.24)] ${dark ? "border-white/10 bg-white/5" : "border-border/70 bg-card"
-                }`}
-        >
-            <div className="relative aspect-[1/0.96] w-full overflow-hidden rounded-[18px] bg-[#0e1114]">
-                <Image
-                    src={src}
-                    alt="Content performance proof"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 1280px) 50vw, 25vw"
-                />
-            </div>
-        </div>
-    )
-}
+const PROJECTS = [
+    {
+        tag: "Software",
+        title: "Product and dashboard systems",
+        description: "Digital product work designed around usage, clarity, and workflow.",
+        image: "/ex.png",
+        imageAlt: "Staxly software product and dashboard work",
+        href: "/ex.png",
+        cta: "Open snapshot",
+    },
+    {
+        tag: "Funnels",
+        title: "Landing pages that support conversion",
+        description: "Pages that sharpen the offer and make the next step easier to take.",
+        image: "/aaras.jpg",
+        imageAlt: "Landing page and business website work",
+        href: "/aaras.jpg",
+        cta: "See preview",
+    },
+    {
+        tag: "Brand & Content",
+        title: "Founder-led content and positioning",
+        description: "Brand-side execution that makes the business feel more intentional.",
+        image: "/amir.webp",
+        imageAlt: "Brand and content project work",
+        href: "/amir.webp",
+        cta: "View visual",
+    },
+]
 
 export default function ProofGrid() {
     const { ref, isVisible } = useScrollAnimation()
 
     return (
         <section
-            id="proof"
+            id="services"
             ref={ref}
-            className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
+            className={`w-full bg-background px-4 py-20 sm:px-6 lg:px-8 transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
-            <div className="mx-auto max-w-6xl">
-                <div className="mb-14 text-center">
-                    <h2 className="font-hero text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-                        Performance Proof
+            <div className="mx-auto max-w-7xl">
+                <div className="mx-auto max-w-4xl text-center">
+                    <h2 className="font-hero text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
+                        Services and selected work
                     </h2>
                 </div>
 
-                <div className="mb-10 grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-[22px] border border-border/70 bg-card px-5 py-5 text-center shadow-sm">
-                        <p className="text-2xl font-bold text-foreground">5.5K+</p>
-                        <p className="mt-1 text-sm text-muted-foreground">followers on profile growth</p>
-                    </div>
-                    <div className="rounded-[22px] border border-border/70 bg-card px-5 py-5 text-center shadow-sm">
-                        <p className="text-2xl font-bold text-foreground">510K+</p>
-                        <p className="mt-1 text-sm text-muted-foreground">views in a 30-day dashboard</p>
-                    </div>
-                    <div className="rounded-[22px] border border-border/70 bg-card px-5 py-5 text-center shadow-sm">
-                        <p className="text-2xl font-bold text-foreground">9</p>
-                        <p className="mt-1 text-sm text-muted-foreground">performance screenshots</p>
-                    </div>
+                <div className="mt-12 grid gap-5 md:grid-cols-3">
+                    {SERVICES.map((service, index) => (
+                        <article
+                            key={service.title}
+                            className="rounded-[24px] border border-border/70 bg-card px-6 py-6 text-left shadow-[0_20px_56px_-52px_rgba(0,0,0,0.12)]"
+                        >
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/52">
+                                Service {index + 1}
+                            </p>
+                            <h3 className="mt-3 text-[1.8rem] font-semibold tracking-tight text-foreground">
+                                {service.title}
+                            </h3>
+                            <p className="mt-3 max-w-sm text-base leading-8 text-muted-foreground">
+                                {service.description}
+                            </p>
+                        </article>
+                    ))}
                 </div>
 
-                <div className="grid gap-6 xl:grid-cols-2">
-                    <section className="rounded-[30px] border border-border/70 bg-card p-6 shadow-[0_24px_70px_-56px_rgba(0,0,0,0.22)]">
-                        <div className="mb-6">
-                            <p className="text-sm font-semibold text-muted-foreground">Before</p>
-                            <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-                                Lower reach, lower follows, and weaker engagement before the content and profile got clearer.
-                            </p>
-                        </div>
+                <div id="work" className="mt-14 space-y-10">
+                    {PROJECTS.map((project, index) => {
+                        const reverse = index % 2 === 1
 
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            {BEFORE_ITEMS.map((src) => (
-                                <ProofCard key={src} src={src} />
-                            ))}
-                        </div>
-                    </section>
+                        return (
+                            <article
+                                key={project.title}
+                                className={`grid gap-6 border-t border-border/70 pt-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center ${reverse ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""}`}
+                            >
+                                <div className="text-left">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/52">
+                                        {project.tag}
+                                    </p>
+                                    <h3 className="mt-3 max-w-lg text-3xl font-semibold tracking-tight text-foreground sm:text-[2.2rem]">
+                                        {project.title}
+                                    </h3>
+                                    <p className="mt-4 max-w-lg text-base leading-8 text-muted-foreground">
+                                        {project.description}
+                                    </p>
 
-                    <section className="rounded-[30px] border border-foreground/10 bg-[#111317] p-6 text-white shadow-[0_24px_70px_-56px_rgba(0,0,0,0.34)]">
-                        <div className="mb-6">
-                            <p className="text-sm font-semibold text-primary">After</p>
-                            <p className="mt-2 max-w-md text-sm leading-relaxed text-white/70">
-                                Stronger reel performance, more follows, and more traction once the page started feeling more intentional.
-                            </p>
-                        </div>
+                                    <div className="mt-7">
+                                        <Link
+                                            href={project.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 rounded-xs border border-border/80 bg-background px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:cursor-pointer hover:border-primary/40 hover:text-primary"
+                                        >
+                                            {project.cta}
+                                            <ArrowRight className="h-4 w-4" />
+                                        </Link>
+                                    </div>
+                                </div>
 
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            {AFTER_ITEMS.map((src) => (
-                                <ProofCard key={src} src={src} dark />
-                            ))}
-                        </div>
-                    </section>
+                                <div className="relative min-h-[320px] overflow-hidden rounded-[28px] border border-border/70 bg-card shadow-[0_22px_64px_-54px_rgba(0,0,0,0.16)] sm:min-h-[380px]">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.imageAlt}
+                                        fill
+                                        className="object-cover object-center"
+                                        sizes="(max-width: 1024px) 100vw, 52vw"
+                                    />
+                                </div>
+                            </article>
+                        )
+                    })}
                 </div>
             </div>
         </section>
