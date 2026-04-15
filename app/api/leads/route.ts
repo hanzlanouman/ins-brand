@@ -23,7 +23,7 @@ const Body = z.object({
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for") ?? "";
   const ua = req.headers.get("user-agent") ?? "";
-  const site = process.env.NEXT_PUBLIC_SITE_NAME || "Staxly Solutions";
+  const site = process.env.NEXT_PUBLIC_SITE_NAME || "Arfah Ali";
 
   let parsed: z.infer<typeof Body>;
   try {

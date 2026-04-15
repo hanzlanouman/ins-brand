@@ -7,10 +7,10 @@ import { PrimaryCTA } from "./primary-cta"
 import BrandMark from "./brand-mark"
 
 const CONTACT_LINKS = [
-    { label: "Email", href: "mailto:hello@staxlysolutions.com", icon: Mail },
-    { label: "Instagram", href: "https://instagram.com/staxlysolutions", icon: Instagram },
-    { label: "YouTube", href: "https://www.youtube.com/@staxlysolutions?sub_confirmation=1", icon: Youtube },
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/staxly-solutions/", icon: Linkedin },
+    { label: "Email", href: "mailto:arfahaliqureshi@gmail.com", icon: Mail },
+    { label: "Instagram", href: "https://instagram.com/arfah_talks", icon: Instagram },
+    { label: "YouTube", href: "https://www.youtube.com/@arfah_talks?sub_confirmation=1", icon: Youtube },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/arfahali-personalbrandingstrategist/", icon: Linkedin },
 ]
 
 export default function ContactCTA() {
@@ -29,22 +29,22 @@ export default function ContactCTA() {
 
                     <div className="relative text-center">
                         <h2 className="font-hero mx-auto max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">
-                            Need a team that can handle the website, the marketing system, and the content behind it?
+                            Ready to grow with clearer content, stronger positioning, and a personal brand people remember?
                         </h2>
 
                         <div className="mt-8 flex justify-center">
-                            <PrimaryCTA href="mailto:hello@staxlysolutions.com" />
+                            <PrimaryCTA href="mailto:arfahaliqureshi@gmail.com" />
                         </div>
 
-                        <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-8">
+                        <div className="mx-auto mt-12 max-w-6xl border-t border-white/10 pt-8">
                             <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
                                 <div className="space-y-2">
                                     <BrandMark theme="dark" size="lg" />
                                     <a
-                                        href="mailto:hello@staxlysolutions.com"
+                                        href="mailto:arfahaliqureshi@gmail.com"
                                         className="block text-sm text-white/68 transition-colors hover:text-white"
                                     >
-                                        hello@staxlysolutions.com
+                                        arfahaliqureshi@gmail.com
                                     </a>
                                 </div>
 

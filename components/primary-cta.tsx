@@ -10,7 +10,7 @@ type CTAProps = {
 }
 
 export function PrimaryCTA({
-    children = "BOOK A DISCOVERY CALL",
+    children = "BOOK A STRATEGY CALL",
     onClick,
     href,
     id,
@@ -41,7 +41,7 @@ export function PrimaryCTA({
     )
 
     const className =
-        "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-xs border border-primary/55 bg-primary px-6 py-4 text-[14px] font-extrabold text-[#07150b] uppercase tracking-wider shadow-[0_0_22px_rgba(3,239,98,0.24)] transition-colors duration-200 hover:bg-[#1af56f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 disabled:cursor-not-allowed disabled:opacity-70"
+        "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-xs border border-primary/55 bg-primary px-6 py-4 text-[14px] font-extrabold text-white uppercase tracking-wider shadow-[0_0_22px_rgba(214,26,255,0.28)] transition-colors duration-200 hover:bg-[#e143ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 disabled:cursor-not-allowed disabled:opacity-70"
 
     const content = (
         <>

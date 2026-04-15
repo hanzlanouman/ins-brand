@@ -1,5 +1,5 @@
 import Hero from "@/components/hero/hero"
-import FounderSection from "@/components/founder-section"
+import BeforeAfterStrip from "@/components/before-after-strip"
 import Process from "@/components/process"
 import ProofGrid from "@/components/proof-grid"
 import Pricing from "@/components/pricing"
@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <main className="min-h-screen mx-auto">
       <Hero />
-      <ProofGrid />
+      <BeforeAfterStrip />
       <Process />
-      <FounderSection />
+      <ProofGrid />
       <Pricing />
       <FAQ />
       <ContactCTA />

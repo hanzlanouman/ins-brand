@@ -15,22 +15,22 @@ export default function BeforeAfterStrip() {
             <div className="mx-auto max-w-5xl">
                 <div className="mb-10 text-center">
                     <h2 className="font-hero text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                        Founder-led strategy with execution built in
+                        500K+ views & 5K+ followers in 14 days
                     </h2>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
-                    <div className="rounded-[28px] border border-border/70 bg-[#111317] p-3 shadow-[0_24px_70px_-56px_rgba(0,0,0,0.28)]">
+                    <div className="rounded-[28px] border border-border/70 bg-black p-3 shadow-[0_24px_70px_-56px_rgba(0,0,0,0.28)]">
                         <div className="mb-3 flex items-center gap-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/72">
-                            <span className="h-2 w-2 rounded-full bg-primary" />
-                            Strategy
+                            <span className="h-2 w-2 rounded-full bg-white/55" />
+                            Before
                         </div>
-                        <div className="relative aspect-[1.78/1] overflow-hidden rounded-[22px] bg-[#0b0d10]">
+                        <div className="relative aspect-[1.78/1] overflow-hidden rounded-[22px] bg-black">
                             <Image
-                                src="/hanzla.jpg"
-                                alt="Hanzla Nouman"
+                                src="/before-profile.jpeg"
+                                alt="Instagram profile before content growth"
                                 fill
-                                className="object-cover object-center"
+                                className="object-contain object-center p-3"
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 priority
                             />
@@ -39,21 +39,21 @@ export default function BeforeAfterStrip() {
 
                     <div className="hidden md:flex items-center justify-center px-1">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border/70 bg-background text-base font-semibold text-foreground shadow-[0_18px_40px_-30px_rgba(0,0,0,0.4)]">
-                            +
+                            →
                         </div>
                     </div>
 
                     <div className="rounded-[28px] border border-foreground/10 bg-[#0c1015] p-3 shadow-[0_24px_70px_-56px_rgba(0,0,0,0.36)]">
                         <div className="mb-3 flex items-center gap-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/82">
                             <span className="h-2 w-2 rounded-full bg-primary" />
-                            Execution
+                            After
                         </div>
                         <div className="relative aspect-[1.78/1] overflow-hidden rounded-[22px] bg-[#0b0d10]">
                             <Image
-                                src="/ex.png"
-                                alt="Staxly software and product work"
+                                src="/after-profile.jpeg"
+                                alt="Instagram profile after content growth"
                                 fill
-                                className="object-cover object-center"
+                                className="object-contain object-center p-2"
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 priority
                             />

@@ -20,37 +20,37 @@ const FAQS = [
     {
         question: "Who is this actually for?",
         answer:
-            "Staxly is a fit for founders, service businesses, and growing teams that need more than one isolated freelancer. It works best when you need software support, digital marketing, landing pages, content direction, and execution that actually connect to each other.",
+            "This is for founders, experts, and business owners who want to grow on Instagram through personal branding but do not want to keep guessing what to post. It is best for people with real expertise, a real offer, and a willingness to show up consistently on camera.",
     },
     {
-        question: "Do you only build software, or do you handle marketing too?",
+        question: "What am I paying for beyond just more content?",
         answer:
-            "Both. The work is centered around software solutions, but it also includes the marketing layer around the product or business. That can mean landing pages, funnels, automations, content strategy, content creation support, and broader digital growth execution.",
+            "You are paying for clarity, positioning, structure, and consistency. The goal is not just to upload more reels. The goal is to make the content sharper, the profile more credible, and the brand easier to trust so the work compounds instead of feeling random.",
     },
     {
-        question: "What am I really paying for each month?",
+        question: "Do I still need to film myself?",
         answer:
-            "You are paying for clarity, execution, and continuity. Instead of juggling a developer, a marketer, and a content person separately, you get one team that can connect the product, the message, and the growth system.",
+            "Yes. If the goal is personal branding, your face and voice matter. The support is there to make filming easier by giving you clearer topics, hooks, scripts, and direction so you are not sitting there wondering what to say.",
     },
     {
-        question: "Can you work with an existing business, website, or product?",
+        question: "Will you help with strategy, hooks, and scripts too?",
         answer:
-            "Yes. You do not need to start from zero. Staxly can improve what already exists, whether that is a site, a web app, a funnel, or your content workflow, and build from there instead of replacing everything.",
+            "Yes. That is one of the main reasons this works. The service is not only editing or posting support. It also includes content direction, topic planning, stronger hooks, and script support based on your niche, voice, and goals.",
     },
     {
-        question: "Do you help with content strategy and creation too?",
+        question: "How quickly should I expect results?",
         answer:
-            "Yes. Content is part of the offer. That includes strategy, planning, hooks, structure, creative direction, and support around short-form content so the marketing side is as intentional as the software side.",
+            "Some profiles look sharper almost immediately, but real growth depends on your niche, offer, content quality, and consistency. No honest person can guarantee virality. What can be improved quickly is clarity, positioning, and the quality of what goes out each month.",
     },
     {
-        question: "How quickly should I expect traction?",
+        question: "Is there a long-term lock-in?",
         answer:
-            "Some improvements are immediate, especially around clarity, experience, and offer presentation. Bigger business results depend on your market, your offer, and consistency. The goal is to improve the system so growth becomes more likely and less random.",
+            "No. These are monthly packages. You can start with the package that fits your current stage, continue if it is working, or pause if the timing is not right.",
     },
     {
-        question: "Is this a long-term contract?",
+        question: "What if I am starting small and not a big creator yet?",
         answer:
-            "No. These are monthly packages. You can start at the level that fits now, keep going if the work is useful, and scale the relationship when the business is ready for more.",
+            "That is fine. You do not need a huge audience to benefit from better positioning and better content. In many cases, it is more useful to build the brand properly early than to keep posting inconsistently and clean it up later.",
     },
 ]
 
@@ -65,7 +65,7 @@ export default function FAQ() {
             className={`w-full bg-background px-4 pb-8 pt-20 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
         >
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-5xl">
                 <div className="mb-12 text-center">
                     <h2 className="font-hero text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
                         FAQs
