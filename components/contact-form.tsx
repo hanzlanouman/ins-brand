@@ -54,39 +54,9 @@ export default function ContactForm() {
 
         prefetchBooking() // ensure it’s already warmed
 
-        const payload = {
-            name: formData.name.trim(),
-            email: formData.email.trim(),
-            dealership: formData.dealershipName.trim(),
-            message: formData.challenge.trim(),
-            utm: {
-                source: qs?.get("utm_source") ?? "",
-                medium: qs?.get("utm_medium") ?? "",
-                campaign: qs?.get("utm_campaign") ?? "",
-            },
-        }
-
-        try {
-            const res = await fetch("/api/leads", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-                cache: "no-store",
-                keepalive: true,
-            })
-
-            const json: { ok?: boolean } = await res.json().catch(() => ({} as { ok?: boolean }))
-
-            if (res.ok && json.ok) {
-                router.push(targetUrl)
-                return
-            }
-            console.error("Lead submit failed", { status: res.status, json })
-        } catch (err) {
-            console.error("Network error submitting lead", err)
-        } finally {
-            setLoading(false)
-        }
+        // Redirect directly to booking step
+        router.push(targetUrl)
+        setLoading(false)
     }
 
     return (
