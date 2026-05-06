@@ -9,7 +9,7 @@ export default function BeforeAfterStrip() {
     return (
         <section
             ref={ref}
-            className={`w-full bg-background mb-24 px-4 pb-10 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            className={`w-full  mb-24 px-4 pb-10 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
         >
             <div className="mx-auto max-w-5xl">

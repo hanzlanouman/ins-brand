@@ -1,21 +1,26 @@
 import Hero from "@/components/hero/hero"
-import BeforeAfterStrip from "@/components/before-after-strip"
-import Process from "@/components/process"
-import ProofGrid from "@/components/proof-grid"
-import Pricing from "@/components/pricing"
-import ContactCTA from "@/components/contact-cta"
-import FAQ from "@/components/faq"
+import ContentNotes from "@/components/content-notes"
+import FocusAreas from "@/components/focus-areas"
+import AboutArfah from "@/components/about-arfah"
+import ContentLibrary from "@/components/content-library"
+import ResourcesEcosystem from "@/components/resources-ecosystem"
+import FinalConversionCTA from "@/components/final-conversion-cta"
+import OtherWork from "@/components/other-work"
+
 
 export default function Home() {
   return (
     <main className="min-h-screen mx-auto">
-      <Hero />
-      <BeforeAfterStrip />
-      <Process />
-      <ProofGrid />
-      <Pricing />
-      <FAQ />
-      <ContactCTA />
+      <div className="bg-[#efc5d040] sm:mx-auto mx-2 max-w-[82.25rem] rounded-3xl my-4">
+        <Hero />
+        <ContentNotes />
+      </div>
+      <FocusAreas />
+      <AboutArfah />
+      <ContentLibrary />
+      <ResourcesEcosystem />
+      <OtherWork />
+      <FinalConversionCTA />
     </main>
   )
 }

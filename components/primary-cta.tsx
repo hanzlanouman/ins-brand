@@ -1,6 +1,8 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useState } from "react"
+
+import { MascotCTA } from "@/components/mascot-cta"
 
 type CTAProps = {
     children?: string
@@ -10,13 +12,12 @@ type CTAProps = {
 }
 
 export function PrimaryCTA({
-    children = "BOOK A STRATEGY CALL",
+    children = "Book a Free Strategy Call",
     onClick,
     href,
     id,
 }: CTAProps) {
     const [busy, setBusy] = useState(false)
-    const btnRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null)
 
     const handleClick = async () => {
         if (busy) return
@@ -41,44 +42,33 @@ export function PrimaryCTA({
     )
 
     const className =
-        "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-xs border border-primary/55 bg-primary px-6 py-4 text-[14px] font-extrabold text-white uppercase tracking-wider shadow-[0_0_22px_rgba(214,26,255,0.28)] transition-colors duration-200 hover:bg-[#e143ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 disabled:cursor-not-allowed disabled:opacity-70"
+        "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-full border border-primary/55 bg-primary/85 px-4 py-2 text-[14px] font-medium text-white tracking-wider shadow-[0_0_22px_rgba(214,26,255,0.28)] transition-colors duration-200 hover:bg-[#e143ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 disabled:cursor-not-allowed disabled:opacity-70"
 
     const content = (
         <>
             <span>{children}</span>
-            {busy ? (
-                <Spinner />
-            ) : (
-                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14" />
-                    <path d="M13 5l7 7-7 7" />
-                </svg>
-            )}
+            {busy ? <Spinner /> : null}
         </>
     )
 
     if (href) {
         return (
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            <a id={id} ref={btnRef as any} href={href} onClick={handleClick} className={className} aria-busy={busy}>
+            <MascotCTA id={id} href={href} onClick={handleClick} className={className} showArrow={false} ariaBusy={busy}>
                 {content}
-            </a>
+            </MascotCTA>
         )
     }
 
     return (
-        <button
+        <MascotCTA
             id={id}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ref={btnRef as any}
-            type="button"
             onClick={handleClick}
             disabled={busy}
             className={className}
-            data-staxly-event="hero_primary_cta_click"
-            aria-busy={busy}
+            showArrow={false}
+            ariaBusy={busy}
         >
             {content}
-        </button>
+        </MascotCTA>
     )
 }

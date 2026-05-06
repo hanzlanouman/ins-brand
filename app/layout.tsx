@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist_Mono, Manrope, Sora, Syne } from "next/font/google"
+import { Fraunces, Geist_Mono, Manrope, Sora, Syne, Inter } from "next/font/google"
 import "@/app/globals.css"
 
 const fontSans = Manrope({
@@ -26,8 +26,15 @@ const fontBrand = Syne({
   variable: "--font-syne",
   display: "swap",
 })
+const fontDisplay = Fraunces({
+  subsets: ["latin"],
+  weight: ["700", "800", "900", "400", "500", "600", "300", "200"],
+  variable: "--font-fraunces",
+  display: "swap",
+})
 import { ThemeProvider } from "next-themes"
 import Navbar from "@/components/navbar/navbar"
+import Footer from "@/components/footer"
 export const metadata: Metadata = {
   title: "Arfah Ali - Content Strategy and Instagram Growth",
   description: "Arfah Ali helps founders and personal brands grow on Instagram with content strategy, short-form content creation, and personal branding support.",
@@ -45,11 +52,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//assets.calendly.com" />
         <script async src="http://localhost:3000/api/analytics/script?key=stk_pub_lxF1rYrX77R5GIZI1-YPccvW" defer></script>
       </head>
-      <body className={`${fontSans.variable} ${fontMono.variable} ${fontHero.variable} ${fontBrand.variable} font-sans antialiased`}>
+      <body className={`${fontSans.variable} ${fontMono.variable} ${fontHero.variable} ${fontBrand.variable} ${fontDisplay.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </ThemeProvider>
       </body>
 

@@ -9,7 +9,7 @@
   --card-foreground: #1a1a1a;
   --popover: #ffffff;
   --popover-foreground: #1a1a1a;
-  --primary: #d61aff;
+  --primary: #c011e796;
   --primary-foreground: #ffffff;
   --secondary: #f5f5f5;
   --secondary-foreground: #333333;
@@ -78,6 +78,7 @@
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --font-hero: var(--font-sora), "Helvetica Neue", sans-serif;
   --font-brand: var(--font-syne), "Helvetica Neue", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -126,7 +127,8 @@
 }
 /* Centered grid lines that fade from center outward */
 .grid-background-centered {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at center,
       rgba(214, 26, 255, 0.14) 0%,
       rgba(214, 26, 255, 0.08) 30%,
@@ -140,13 +142,18 @@
     ),
     linear-gradient(rgba(214, 26, 255, 0.09) 1px, transparent 1px),
     linear-gradient(90deg, rgba(214, 26, 255, 0.09) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+  background-size:
+    100% 100%,
+    100% 100%,
+    50px 50px,
+    50px 50px;
   background-position: center, center, center, center;
   background-attachment: fixed;
 }
 
 .dark .grid-background-centered {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at center,
       rgba(255, 255, 255, 0) 0%,
       rgba(255, 255, 255, 0) 30%,
@@ -160,21 +167,29 @@
     ),
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
+  background-size:
+    100% 100%,
+    100% 100%,
+    80px 80px,
+    80px 80px;
   background-position: center, center, center, center;
   background-attachment: fixed;
 }
 
 /* Updated grid background to fade from center outward */
 .grid-background-fade {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at center,
       rgba(255, 255, 255, 0.08) 0%,
       transparent 80%
     ),
     linear-gradient(rgba(214, 26, 255, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(214, 26, 255, 0.08) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-size:
+    100% 100%,
+    40px 40px,
+    40px 40px;
   background-position: center, center, center;
 }
 
