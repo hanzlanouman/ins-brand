@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Link from "next/link"
 import ThemeSwitcher from "./theme-switcher"
 import { PrimaryCTA } from "../primary-cta"
 import { X } from "lucide-react"
@@ -9,7 +10,7 @@ import Logo from "./logo"
 type Props = { isOpen: boolean; onClose: () => void }
 
 export default function MobileMenu({ isOpen, onClose }: Props) {
-    const firstLinkRef = useRef<HTMLButtonElement>(null)
+    const firstLinkRef = useRef<HTMLAnchorElement>(null)
 
     // body lock + Esc + initial focus when opening
     useEffect(() => {
@@ -25,10 +26,11 @@ export default function MobileMenu({ isOpen, onClose }: Props) {
         }
     }, [isOpen, onClose])
 
-    const scrollTo = (id: string) => {
-        onClose()
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
-    }
+    const links = [
+        { href: "/#focus-areas", label: "Focus" },
+        { href: "/#resources", label: "Resources" },
+        { href: "/services", label: "Work With Me" },
+    ]
 
     return (
         <div
@@ -71,43 +73,22 @@ export default function MobileMenu({ isOpen, onClose }: Props) {
                 <nav className="flex h-[calc(100%-56px)] flex-col">
                     {/* links + CTA */}
                     <ul className="px-3 py-3 space-y-1">
-                        <li>
-                            <button
-                                ref={firstLinkRef}
-                                onClick={() => scrollTo("process")}
-                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
-                            >
-                                How It Works
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                onClick={() => scrollTo("proof")}
-                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
-                            >
-                                Proof
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                onClick={() => scrollTo("pricing")}
-                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
-                            >
-                                Plans
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                onClick={() => scrollTo("faq")}
-                                className="w-full text-left px-3 py-4 text-base font-medium text-foreground rounded-lg hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
-                            >
-                                FAQs
-                            </button>
-                        </li>
+                        {links.map((link, index) => (
+                            <li key={link.href}>
+                                <Link
+                                    ref={index === 0 ? firstLinkRef : undefined}
+                                    href={link.href}
+                                    onClick={onClose}
+                                    className="block w-full rounded-lg px-3 py-4 text-left text-base font-medium text-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary/60"
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
 
                         {/* Primary CTA clearly visible with links */}
                         <li className="pt-2 px-1">
-                            <PrimaryCTA id="mobile-cta" onClick={() => scrollTo("contact")} />
+                            <PrimaryCTA id="mobile-cta" href="/book-your-call" onClick={onClose} />
                         </li>
                     </ul>
 

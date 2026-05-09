@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Logo from "./logo"
 import NavLinks from "./nav-links"
@@ -8,24 +8,14 @@ import MobileMenu from "./mobile-menu"
 import { PrimaryCTA } from "../primary-cta"
 
 export default function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 0)
-        }
-
-        window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
 
     return (
         <>
             <nav
                 className={`absolute top-0 left-0 right-0 z-50 transition-all duration-300 `}
             >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-10">
+                <div className="mx-auto max-w-[82.5rem] px-4 py-10 sm:px-6 lg:px-16">
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
                         <Logo />
@@ -51,15 +41,7 @@ export default function Navbar() {
                             </button> */}
                             <PrimaryCTA
                                 id="hero-cta"
-                                onClick={() => {
-                                    // defer by one frame to allow Chrome focus propagation
-                                    requestAnimationFrame(() => {
-                                        document.getElementById("contact")?.scrollIntoView({
-                                            behavior: "smooth",
-                                            block: "start",
-                                        })
-                                    })
-                                }}
+                                href="/book-your-call"
                             />
 
                         </div>
@@ -70,15 +52,7 @@ export default function Navbar() {
                             {/* <ThemeSwitcher /> */}
                             <PrimaryCTA
                                 id="hero-cta"
-                                onClick={() => {
-                                    // defer by one frame to allow Chrome focus propagation
-                                    requestAnimationFrame(() => {
-                                        document.getElementById("contact")?.scrollIntoView({
-                                            behavior: "smooth",
-                                            block: "start",
-                                        })
-                                    })
-                                }}
+                                href="/book-your-call"
                             />
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

@@ -4,9 +4,11 @@ import Image from "next/image"
 
 export default function HeroContent() {
     return (
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-16">
+        <div className="relative z-10 mx-auto w-full overflow-visible max-w-7xl px-5 sm:px-8 lg:px-16">
+
+            <div className="absolute -right-[105%] top-[10%] h-[96rem] w-[96rem] rounded-full border-[100px] border-white/40" />
             <div className="grid min-h-[590px] grid-cols-1 items-center gap-10 pt-32 pb-16 sm:min-h-[660px] sm:pt-36 sm:pb-20 lg:min-h-[700px] lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:pt-40 lg:pb-24 xl:gap-20">
-                <div className="mx-auto w-full max-w-[270px] sm:max-w-[380px]">
+                <div className="mx-auto w-full max-w-[270px] sm:max-w-[390px]">
                     <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border border-white/55 bg-background/30 shadow-[0_32px_90px_-58px_rgba(26,26,26,0.5)] sm:rounded-[2.6rem]">
                         <Image
                             src="/arfah/main.jpeg"
